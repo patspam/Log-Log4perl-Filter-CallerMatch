@@ -1,16 +1,9 @@
 Log-Log4perl-Filter-CallerMatch
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
-
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
-
+This is a Log4perl custom filter that allows for filtering against package and subroutine (as returned by caller()), 
+as well as log message contents. The call frame to be tested against can be specified explicitly or an integer range 
+can be given. This filter has proved to be useful in WebGUI development where the Log4perl category is used to 
+represent site names, thus you need another way of filtering log messages from the area of code you're interested in.
 
 INSTALLATION
 

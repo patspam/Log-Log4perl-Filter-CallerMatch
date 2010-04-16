@@ -51,11 +51,14 @@ sub ok {
 
     my ( $s_regex, $p_regex, $m_regex ) = ( $self->{SubToMatch}, $self->{PackageToMatch}, $self->{StringToMatch} );
     
+    # First climb out of Log4perl's internals (differs depending on whether Boolean is being used etc..
+    my $base = 0;
+    $base++ while caller($base) =~ m/^Log::Log4perl/;
+    
     foreach my $i ( $self->{MinCallFrame} .. $self->{MaxCallFrame} ) {
-        my ( $package, $sub ) = ( caller $i )[ 0, 3 ];
-        # next unless $package;
-        # next unless $sub;
-        # warn "$package - $sub";
+        my ( $package, $sub ) = ( caller $i + $base )[ 0, 3 ];
+        next unless $package;
+        next unless $sub;
         no warnings;
         if ( $sub =~ $s_regex && $package =~ $p_regex && $message =~ $m_regex ) {
             return $self->{AcceptOnMatch};

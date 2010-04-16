@@ -113,11 +113,11 @@ END_CONFIG
     log4perl.filter.MyFilter                = Log::Log4perl::Filter::CallerMatch
     log4perl.filter.MyFilter.AcceptOnMatch  = true
     log4perl.filter.MyFilter.SubToMatch     = main::curry
-    log4perl.filter.MyFilter.CallFrame      = 4
+    log4perl.filter.MyFilter.CallFrame      = 1
 END_CONFIG
 
     curry($logger);
-    like( $buffer->buffer(), qr/curry/, 'curry found at CallFrame 4' );
+    like( $buffer->buffer(), qr/curry/, 'curry found at CallFrame 1' );
     end($buffer);
     
     
@@ -125,12 +125,12 @@ END_CONFIG
     log4perl.filter.MyFilter                = Log::Log4perl::Filter::CallerMatch
     log4perl.filter.MyFilter.AcceptOnMatch  = true
     log4perl.filter.MyFilter.SubToMatch     = main::nested_curry
-    log4perl.filter.MyFilter.CallFrame      = 5
+    log4perl.filter.MyFilter.CallFrame      = 2
 END_CONFIG
 
     
     nested_curry($logger);
-    is( $buffer->buffer(), q{}, 'nested_curry not found at CallFrame 5 when called directly' );
+    is( $buffer->buffer(), q{}, 'nested_curry not found at CallFrame 2 when called directly' );
     $buffer->buffer("");
     
     nested_curry_outer($logger);
@@ -144,8 +144,8 @@ END_CONFIG
     log4perl.filter.MyFilter                = Log::Log4perl::Filter::CallerMatch
     log4perl.filter.MyFilter.AcceptOnMatch  = true
     log4perl.filter.MyFilter.SubToMatch     = main::nested_curry
-    log4perl.filter.MyFilter.MinCallFrame      = 6
-    log4perl.filter.MyFilter.MaxCallFrame      = 7
+    log4perl.filter.MyFilter.MinCallFrame      = 3
+    log4perl.filter.MyFilter.MaxCallFrame      = 4
 END_CONFIG
 
     nested_curry_outer($logger);
@@ -157,8 +157,8 @@ END_CONFIG
     log4perl.filter.MyFilter                = Log::Log4perl::Filter::CallerMatch
     log4perl.filter.MyFilter.AcceptOnMatch  = true
     log4perl.filter.MyFilter.SubToMatch     = main::nested_curry
-    log4perl.filter.MyFilter.MinCallFrame      = 3
-    log4perl.filter.MyFilter.MaxCallFrame      = 5
+    log4perl.filter.MyFilter.MinCallFrame      = 0
+    log4perl.filter.MyFilter.MaxCallFrame      = 2
 END_CONFIG
     
     nested_curry_outer($logger);

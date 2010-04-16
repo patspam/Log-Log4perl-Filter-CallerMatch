@@ -1,4 +1,4 @@
-Revision history for Log-Log4perl-Filter-CallerMatch
+Revision history for {{$dist->name}}
 
 {{$NEXT}}
     Now works with Log::Log4perl::Filter::Boolean

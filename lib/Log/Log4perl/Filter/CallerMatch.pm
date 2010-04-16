@@ -53,6 +53,9 @@ sub ok {
     
     foreach my $i ( $self->{MinCallFrame} .. $self->{MaxCallFrame} ) {
         my ( $package, $sub ) = ( caller $i )[ 0, 3 ];
+        # next unless $package;
+        # next unless $sub;
+        # warn "$package - $sub";
         no warnings;
         if ( $sub =~ $s_regex && $package =~ $p_regex && $message =~ $m_regex ) {
             return $self->{AcceptOnMatch};
@@ -70,8 +73,9 @@ This Log4perl custom filter checks the call stack using caller() and filters
 the subroutine and package using user-provided regular expressions. You can specify
 a specific call frame to test against, or have the filter iterate through a range of call frames.
 
-=head1 SYNOPSIS
+=head1 USAGE
 
+ # log.conf
  log4perl.logger = ALL, A1
  log4perl.appender.A1        = Log::Log4perl::Appender::TestBuffer
  log4perl.appender.A1.Filter = MyFilter

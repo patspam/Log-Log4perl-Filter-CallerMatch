@@ -1,12 +1,15 @@
-Revision history for {{$dist->name}}
+Revision history for {{ $dist->name }}
 
-{{$NEXT}}
-    Now works with Log::Log4perl::Filter::Boolean
-    Improved tests
+{{ $NEXT }}
+    * Now works with Log::Log4perl::Filter::Boolean
+    * Updated to use new Dist::Zilla::PluginBundle::PDONELAN
+
+1.101060  2010-04-16 16:52:00 EST5EDT
+    * Improved tests
 
 1.100830  2010-03-24 14:48:48 EST5EDT
-    Switched to Dist::Zilla
+    * Switched to Dist::Zilla
         
 0.01    Date/time
-    First version, released on an unsuspecting world.
+    * First version, released on an unsuspecting world.
 

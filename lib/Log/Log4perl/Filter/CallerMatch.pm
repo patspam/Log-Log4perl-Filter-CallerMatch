@@ -50,11 +50,11 @@ sub ok {
     my $message = join $Log::Log4perl::JOIN_MSG_ARRAY_CHAR, @{ $p{message} };
 
     my ( $s_regex, $p_regex, $m_regex ) = ( $self->{SubToMatch}, $self->{PackageToMatch}, $self->{StringToMatch} );
-    
+
     # First climb out of Log4perl's internals (differs depending on whether Boolean is being used etc..
     my $base = 0;
     $base++ while caller($base) =~ m/^Log::Log4perl/;
-    
+
     foreach my $i ( $self->{MinCallFrame} .. $self->{MaxCallFrame} ) {
         my ( $package, $sub ) = ( caller $i + $base )[ 0, 3 ];
         next unless $package;
@@ -83,7 +83,7 @@ a specific call frame to test against, or have the filter iterate through a rang
  log4perl.appender.A1        = Log::Log4perl::Appender::TestBuffer
  log4perl.appender.A1.Filter = MyFilter
  log4perl.appender.A1.layout = Log::Log4perl::Layout::SimpleLayout
-    
+
  log4perl.filter.MyFilter                = Log::Log4perl::Filter::CallerMatch
  log4perl.filter.MyFilter.SubToMatch     = WebGUI::Session::ErrorHandler
  log4perl.filter.MyFilter.PackageToMatch = Flux::

@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}
 
 {{ $NEXT }}
+
+1.200     2010-11-06 00:09:07 America/New_York
     * Now works with Log::Log4perl::Filter::Boolean
     * Updated to use new Dist::Zilla::PluginBundle::PDONELAN
 
